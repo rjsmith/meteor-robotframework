@@ -1,6 +1,6 @@
 ## rsbatech:robotframework
 
-This Meteor package enables you to use the [Robot Framework](http://robotframework.org) acceptance testing platform to write end-to-end tests for your Meteor applications, using the Velocity framework.
+This [Meteor Framework](https://www.meteor.com/) package enables you to use the [Robot Framework](http://robotframework.org) acceptance testing platform to write end-to-end tests for your Meteor applications, using the Velocity framework.
 
 Key features:
 * Write application-level end-to-end UI tests (see "Test Mode #1" on Sam Hatoum's [THE 7 TESTING MODES OF METEOR](http://www.meteortesting.com/blog/e72fe/the-7-testing-modes-of-meteor) blog post)
