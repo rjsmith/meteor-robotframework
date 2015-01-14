@@ -21,8 +21,8 @@
       'velocity:node-soft-mirror@0.2.5',
       'velocity:shim@0.0.3',
       //'xolvio:webdriver@0.1.3',
-      'underscore', 
-      'momentjs:moment'
+      'underscore@1.0.2', 
+      'momentjs:moment@2.8.4'
       ], ['server' , 'client']);
 
     api.use([
