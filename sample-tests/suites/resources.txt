@@ -1,0 +1,20 @@
+*** Settings ***
+Documentation  Common Web - testing resource user keywords
+Library        Selenium2Library
+
+*** Variables ***
+# ${MIRROR_URL} is set by rsbatech:robotframework and should not
+# be overidden in your tests!
+${BROWSER}        PhantomJS
+${DELAY}          0
+${HOME URL}      ${MIRROR_URL}
+
+*** Keywords ***
+Open Browser To Home Page
+    Open Browser    ${HOME URL}    ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+
+Home Page Should Be Open
+    [Arguments]  ${_title}
+    Title Should Be    ${_title}

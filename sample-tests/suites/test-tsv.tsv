@@ -1,0 +1,14 @@
+*** Settings ***
+Documentation	Example Robot Framework client TSV format test file
+Resource	resources.txt
+
+*** Variables ***
+${TITLE}	test
+
+*** Test Cases ***
+Test Home Page Can Open (TSV)
+	Open Browser To Home Page
+	Home Page Should Be Open	${TITLE}
+	[Teardown]	Close Browser
+
+*** Keywords ***
