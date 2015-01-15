@@ -49,7 +49,7 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
   if (!fs.existsSync(testsSuitesPath)) {
     return;
   }
-
+    
   /**
    * Obtains Velocity sample-test files
    */
@@ -71,9 +71,6 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
       contents: Assets.getText(path.join('sample-tests', 'arguments.txt'))      
     }];
   }
-
-  // TODO: Find out what 'Module' is used for
-  var Module = Npm.require('module');
 
   // Set up Meteor Velocity reactive callbacks
   Meteor.startup(function () {
@@ -97,8 +94,6 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
   function _rerunRobotFramework (file) {
 
     console.log('[rsbatech:robotframework] Robot Framework is running');
-
-    delete Module._cache[file.absolutePath];
 
     // Optionally use xolvio:webdriver
     // Alternatively use 'phantomjs --webdriver=4444' in separate console 
