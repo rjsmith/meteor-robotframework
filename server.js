@@ -5,12 +5,13 @@
  * The main code blocks and velocity - specific code were taken from:
  * https://github.com/xolvio/meteor-cucumber
  */
+/* jshint -W030 */
 
-
+/* jshint -W020 */
 robotframework = {};
-
 RF_DEBUG = !!process.env.RF_DEBUG;
 RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
+/* jshint +W020 */
 
 (function () {
 
@@ -25,6 +26,7 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
   var path = Npm.require('path'),
       fs = Npm.require('fs'),
       XmlStream = Npm.require('xml-stream'),
+      Rimraf = Npm.require('rimraf'),
       FRAMEWORK_NAME = 'robotframework',
       FRAMEWORK_REGEX = FRAMEWORK_NAME + '/.+\\.(txt|robot|html|tsv)$',
       testSuitesRelativePath = path.join(FRAMEWORK_NAME, 'suites'),
@@ -91,7 +93,7 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
     });
   });
  
-  function _rerunRobotFramework (file) {
+  function _rerunRobotFramework () {
 
     console.log('[rsbatech:robotframework] Robot Framework is running');
 
@@ -109,6 +111,9 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
     // From: http://stackoverflow.com/a/16099450
     var spawn = Npm.require('child_process').spawn;
  
+    // Delete .logs folder from previous test run
+    Rimraf.sync(outputDirPath);
+
     // Spawn child process to execute pybot robot framework command line
     var prc = spawn('pybot',  _getExecOptions());
 
