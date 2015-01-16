@@ -12,7 +12,9 @@
 
   Npm.depends({
     // https://github.com/assistunion/xml-stream
-    'xml-stream': '0.4.5'
+    'xml-stream': '0.4.5',
+    // https://github.com/isaacs/rimraf
+    'rimraf': '2.2.8'
   })
 
   Package.onUse(function(api) {
