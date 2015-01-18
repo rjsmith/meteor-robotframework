@@ -13,6 +13,10 @@ Key features:
 
 This package works by spawning a child process which executes Robot Framework's `pybot` script, acting on the tests contained in the `tests\robotframework\suites` folder in your Meteor application.  The generated `output.xml` file is then parsed by this package and reported back to Velocity framework.
 
+Watch the introduction video on Youtube:
+
+[![Introduction to meteor-robotframework](http://img.youtube.com/vi/90dX3QD7dYo/mqdefault.jpg)](http://youtu.be/90dX3QD7dYo)
+
 ### Installation
 
 To run your tests using this package on a given machine, you must first install [Python](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#python-installation), [Robot Framework](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#installing-robot-framework) and additional test libraries (such as [Selenium2Library](https://github.com/rtomac/robotframework-selenium2library#installation) or [PhantomRobot](https://github.com/datakurre/phantomrobot)). 
