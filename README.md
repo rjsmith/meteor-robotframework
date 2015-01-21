@@ -23,7 +23,14 @@ To run your tests using this package on a given machine, you must first install 
 
 You must also ensure you have installed the [appropriate browser driver software](http://docs.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-s-drivers) that Selenium2Library uses to automate the UI of your application.
 
-You can install this package using Meteor's package management system:
+As an example, assuming you already have a Python 2.5, 2.6 or 2.7 installation (but do please check the official documents):
+
+```bash
+$ sudo pip install robotframework-selenium2library
+$ sudo npm install -g phantomjs
+```
+
+Install this package using Meteor's package management system:
 
 ```bash
 meteor add rsbatech:robotframework
@@ -114,9 +121,19 @@ RF_DEBUG=1 meteor
 
 You could try adding [this Robot Framework library](https://github.com/iPlantCollaborativeOpenSource/Robotframework-MongoDB-Library) for working with MongoDB databases.  This would let you write tests that interacted with the UI of your Meteor application, but could also access the application's MongoDB database at the same time.  Use cases for this could include setting up and tearing down test data, and asserting that expected inserts and updates have been made to specific collections.
 
-It should also be possible to wrap one of the [Python-based DDP clients](http://meteorpedia.com/read/DDP_Clients#Python) in a Robot Framework library, which would also let you write Robot Framework tests against the DDP API of your application(e.g. Meteor methods).
+It should also be possible to wrap one of the [Python-based DDP clients](http://meteorpedia.com/read/DDP_Clients#Python) in a Robot Framework library, which would also let you write Robot Framework tests against the DDP API of your application (e.g. Meteor methods).
 
-You can execute the Robot Framework test suites contained in your application repository yourself, by using one of [Robot Framework's start scripts](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#starting-test-execution).  Or use them as part of a Continuous Integration workflow.
+You can execute the Robot Framework test suites contained in your application repository externally, instead of using this package to trigger them via Velocity, by using one of [Robot Framework's start scripts](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#starting-test-execution).  Or use them as part of a Continuous Integration workflow.
+
+### Contributions and Issues
+
+Please report all issues and questions related to this package only (ie. Velocity integration) on [Github](https://github.com/rjsmith/meteor-robotframework/issues).  If you have an issue with Robot Framework itself or any of its test libraries, you will almost certainly get a better response by [contacting the authors of those applications](http://robotframework.org/#support-contact) directly.  
+
+Pull requests gratefully received!
+
+### Change Log
+
+See [CHANGELOG.md](CHANGELOG.md)
 
 ### Acknowledgements
 
@@ -126,4 +143,4 @@ This package uses the NPM module [xml-stream](https://github.com/assistunion/xml
 
 ### License
 
-This package is (c) RSBATechnology Ltd 2015, and is released under the MIT License (see LICENSE).
+This package is (c) RSBA Technology Ltd 2015, and is released under the MIT License (see LICENSE).
