@@ -7,13 +7,16 @@ Library        Selenium2Library
 # be overidden in your tests!
 ${BROWSER}        PhantomJS
 ${DELAY}          0
+${TIMEOUT}        5 seconds
 ${HOME URL}      ${MIRROR_URL}
 
 *** Keywords ***
 Open Browser To Home Page
-    Open Browser    ${HOME URL}    ${BROWSER}
+    Create Webdriver  PhantomJS  executable_path=${PHANTOMJS_BINPATH}
+    Go To  ${HOME_URL}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
+    Set Selenium Timeout  ${TIMEOUT}
 
 Home Page Should Be Open
     [Arguments]  ${_title}

@@ -21,13 +21,12 @@ Watch the introduction video on Youtube:
 
 To run your tests using this package on a given machine, you must first install [Python](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#python-installation), [Robot Framework](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst#installing-robot-framework) and additional test libraries (such as [Selenium2Library](https://github.com/rtomac/robotframework-selenium2library#installation) or [PhantomRobot](https://github.com/datakurre/phantomrobot)). 
 
-You must also ensure you have installed the [appropriate browser driver software](http://docs.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-s-drivers) that Selenium2Library uses to automate the UI of your application.
+You must also ensure you have installed the [appropriate browser driver software](http://docs.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-s-drivers) that Selenium2Library uses to automate the UI of your application.  Meteor-robotframework automatically installs PhantomJS and ChromeDriver, but you may want to install others yourself.  See the section on [webdrivers](#selenium-webdrivers) below for more information.
 
 As an example, assuming you already have a Python 2.5, 2.6 or 2.7 installation (but do please check the official documents):
 
 ```bash
 $ sudo pip install robotframework-selenium2library
-$ sudo npm install -g phantomjs
 ```
 
 Install this package using Meteor's package management system:
@@ -76,15 +75,17 @@ Library        Selenium2Library
 # ${MIRROR_URL} is set by rsbatech:robotframework and should not
 # be overidden in your tests!
 
-${BROWSER}       PhantomJS
-${DELAY}         0
+${SPEED}         0.1 seconds
+${TIMEOUT}       5 seconds
 ${HOME URL}      ${MIRROR_URL}
 
 *** Keywords ***
 Open Browser To Home Page
-    Open Browser    ${HOME URL}    ${BROWSER}
+    Create Webdriver  PhantomJS  executable_path=${PHANTOMJS_BINPATH}
+    Go To  ${LOGIN_URL}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
+    Set Selenium Timeout  ${TIMEOUT}
 
 Home Page Should Be Open
     [Arguments]  ${_title}
@@ -94,7 +95,24 @@ Home Page Should Be Open
 
 #### ${MIRROR_URL}
 
-You must use the provided `${MIRROR_URL}` variable as the root URL for instances of the `Open Browser` keyword in your tests.  This ensures your test executes against a [separate mirror instance](https://github.com/meteor-velocity/node-soft-mirror) of your application and database.
+You must use the provided `${MIRROR_URL}` variable as the root URL for instances of the `Open Browser` or `Go To` keywords in your tests.  This ensures your test executes against a [separate mirror instance](https://github.com/meteor-velocity/node-soft-mirror) of your application and database.
+
+#### Selenium Webdrivers
+
+For convenience and portability, meteor-robotframework automatically installs several webdrivers locally in your project.  If you wish to use those in your tests, you must use the [`Create Webdriver`](http://rtomac.github.io/robotframework-selenium2library/doc/Selenium2Library.html#Create%20Webdriver) + [`Go To`](http://rtomac.github.io/robotframework-selenium2library/doc/Selenium2Library.html#Go%20To) keywords instead of [`Open Browser`](http://rtomac.github.io/robotframework-selenium2library/doc/Selenium2Library.html#Open%20Browser), so that you can specify the correct path to these local webdriver executables:
+
+| Webdriver  | Keywords to use to launch new browser sessions                                                  |
+| -----------| ----------------------------------------------------------------------------------------------- |
+| PhantomJS  | `Create Webdriver  PhantomJS  executable_path=${PHANTOMJS_BINPATH}`<br> `Go To  ${MIRROR_URL}`  |
+| Chrome     | `Create Webdriver  Chrome  executable_path=${CHROMEDRIVER_BINPATH}`<br> `Go To  ${MIRROR_URL}`  |
+
+Meteor-robotframework sets the `${PHANTOMJS_BINPATH}` and `${CHROMEDRIVER_BINPATH}` variables before launching Robot Framework.
+
+Alternatively, you can use any webdrivers that are separately installed on your machine.  For example, ensure the path to the relevant executable is on your environment `PATH`, you can use the `Open Browser` keyword instead:
+
+```RobotFramework
+Open Browser  PhantomJS  ${MIRROR_URL}
+```
 
 #### Report.html
 

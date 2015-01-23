@@ -27,6 +27,10 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
       fs = Npm.require('fs'),
       XmlStream = Npm.require('xml-stream'),
       Rimraf = Npm.require('rimraf'),
+      PhantomJS = Npm.require('phantomjs'),
+      phantomJSBinPath = PhantomJS.path,
+      ChromeDriver = Npm.require('chromedriver'),
+      chromeDriverBinPath = ChromeDriver.path,
       FRAMEWORK_NAME = 'robotframework',
       FRAMEWORK_REGEX = FRAMEWORK_NAME + '/.+\\.(txt|robot|html|tsv)$',
       testSuitesRelativePath = path.join(FRAMEWORK_NAME, 'suites'),
@@ -97,16 +101,11 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
 
     console.log('[rsbatech:robotframework] Robot Framework is running');
 
-    // Optionally use xolvio:webdriver
-    // Alternatively use 'phantomjs --webdriver=4444' in separate console 
-    if (RF_XOLVIO_WEBDRIVER) {
-       // Start webdriver
-        Package['xolvio:webdriver'].wdio.getGhostDriver(Meteor.bindEnvironment(
-          function(browzer) {
-            robotframework.browser = browzer;
-          })); 
-    } 
- 
+    if (RF_DEBUG) {
+      console.log('[rsbatech:robotframework] PhantomJS BinPath:' + phantomJSBinPath);
+      console.log('[rsbatech:robotframework] ChromeDriver BinPath:' + chromeDriverBinPath); 
+    }
+
     // Run External robot framework command
     // From: http://stackoverflow.com/a/16099450
     var spawn = Npm.require('child_process').spawn;
@@ -117,6 +116,7 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
     // Spawn child process to execute pybot robot framework command line
     var prc = spawn('pybot',  _getExecOptions());
 
+    // Print Robot Framework stdout console output
     if (RF_DEBUG) {
       prc.stdout.setEncoding('utf8');
       prc.stdout.on('data', function (data) {
@@ -200,6 +200,10 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
     execOptions.push(outputDirPath);
     execOptions.push('--variable');
     execOptions.push('MIRROR_URL:'+robotframework.mirror.rootUrl);
+    execOptions.push('--variable');
+    execOptions.push('PHANTOMJS_BINPATH:'+phantomJSBinPath);
+    execOptions.push('--variable');
+    execOptions.push('CHROMEDRIVER_BINPATH:'+chromeDriverBinPath);
 
     // Specify test suites root directory
     execOptions.push(testsSuitesPath);

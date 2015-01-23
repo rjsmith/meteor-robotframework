@@ -14,7 +14,9 @@
     // https://github.com/assistunion/xml-stream
     'xml-stream': '0.4.5',
     // https://github.com/isaacs/rimraf
-    'rimraf': '2.2.8'
+    'rimraf': '2.2.8',
+    'phantomjs': '1.9.13',
+    'chromedriver': '2.13.0'
   })
 
   Package.onUse(function(api) {
