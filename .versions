@@ -31,7 +31,7 @@ practicalmeteor:loglevel@1.1.0_3
 random@1.0.2
 reactive-var@1.0.4
 retry@1.0.2
-rsbatech:robotframework@0.1.0
+rsbatech:robotframework@0.2.0
 spacebars-compiler@1.0.4
 templating@1.0.11
 tracker@1.0.5
