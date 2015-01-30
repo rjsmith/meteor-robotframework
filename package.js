@@ -30,7 +30,7 @@
       ], ['server' , 'client']);
 
     api.use([
-        'velocity:html-reporter@0.3.2'
+        'velocity:html-reporter@0.4.1'
       ], 'client');
 
     api.addFiles([
