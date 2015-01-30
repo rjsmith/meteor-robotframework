@@ -1,3 +1,11 @@
+## 0.2.0 - 2015-01-30
+
+- [fix] Removed internal call to Module._cache
+- [fix] Use rimraf to delete contents of `.log` working folder prior to executing tests
+- [README] Added link to initial Youtube screencast
+- [feature] Added automatic npm dependency on phantomjs
+- [feature] Update dependency on latest html-reporter package to ensure velocity button is hidden if app is running in a mirror
+
 ## 0.1.0 - 2015-01-14
 
 - [release] First commit
