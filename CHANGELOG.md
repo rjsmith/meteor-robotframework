@@ -3,6 +3,7 @@
 - [fix] Removed internal call to Module._cache
 - [fix] Use rimraf to delete contents of `.log` working folder prior to executing tests
 - [README] Added link to initial Youtube screencast
+- [README] Added revised guidance on using Selenium web drivers with meteor-robotframework
 - [feature] Added automatic npm dependency on phantomjs
 - [feature] Update dependency on latest html-reporter package to ensure velocity button is hidden if app is running in a mirror
 
