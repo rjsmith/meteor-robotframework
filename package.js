@@ -23,7 +23,7 @@
     api.use([
       'velocity:core@0.4.5',
       'velocity:node-soft-mirror@0.2.5',
-      'velocity:shim@0.0.3'
+      'velocity:shim@0.0.3',
       'underscore@1.0.2', 
       'momentjs:moment@2.8.4'
       ], ['server' , 'client']);
