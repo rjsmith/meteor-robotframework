@@ -10,7 +10,6 @@
 /* jshint -W020 */
 robotframework = {};
 RF_DEBUG = !!process.env.RF_DEBUG;
-RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
 /* jshint +W020 */
 
 (function () {
@@ -32,7 +31,7 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
       ChromeDriver = Npm.require('chromedriver'),
       chromeDriverBinPath = ChromeDriver.path,
       FRAMEWORK_NAME = 'robotframework',
-      FRAMEWORK_REGEX = FRAMEWORK_NAME + '/.+\\.(txt|robot|html|tsv)$',
+      FRAMEWORK_REGEX = FRAMEWORK_NAME + '/.+\\.(txt|robot|tsv)$',
       testSuitesRelativePath = path.join(FRAMEWORK_NAME, 'suites'),
       outputDirRelativePath = path.join(FRAMEWORK_NAME, '.logs'),
       argumentsFileRelativePath = path.join(FRAMEWORK_NAME, 'arguments.txt'),
@@ -81,7 +80,8 @@ RF_XOLVIO_WEBDRIVER = !!process.env.RF_XOLVIO_WEBDRIVER;
   // Set up Meteor Velocity reactive callbacks
   Meteor.startup(function () {
     Meteor.call('velocity/mirrors/request', {
-      framework: FRAMEWORK_NAME
+      framework: FRAMEWORK_NAME,
+      testsPath: path.join(FRAMEWORK_NAME, 'fixtures'),
     });
     var init = function (mirror) {
       robotframework.mirror = mirror;

@@ -5,7 +5,7 @@
   Package.describe({
     name: 'rsbatech:robotframework',
     summary: 'Robot Framework for Meteor Velocity',
-    version: '0.2.0',
+    version: '0.3.0',
     git: 'https://github.com/rjsmith/meteor-robotframework',
     debugOnly: true
   });
@@ -21,15 +21,14 @@
 
   Package.onUse(function(api) {
     api.use([
-      'velocity:core@0.4.5',
-      'velocity:node-soft-mirror@0.2.5',
+      'velocity:core@0.6.0-rc.5',
       'velocity:shim@0.0.3',
       'underscore@1.0.2', 
-      'momentjs:moment@2.8.4'
+      'momentjs:moment@2.10.0'
       ], ['server' , 'client']);
 
     api.use([
-        'velocity:html-reporter@0.4.1'
+        'velocity:html-reporter@0.4.2'
       ], 'client');
 
     api.addFiles([
