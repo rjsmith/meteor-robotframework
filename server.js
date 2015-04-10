@@ -66,8 +66,8 @@ RF_DEBUG = !!process.env.RF_DEBUG;
       path: path.join(testSuitesRelativePath, 'test-tsv.tsv'),
       contents: Assets.getText(path.join('sample-tests', 'suites', 'test-tsv.tsv'))
     }, {
-      path: path.join(testSuitesRelativePath, 'test-html.html'),
-      contents: Assets.getText(path.join('sample-tests', 'suites', 'test-html.html'))
+      path: path.join(testSuitesRelativePath, 'test-html.xhtml'),
+      contents: Assets.getText(path.join('sample-tests', 'suites', 'test-html.xhtml'))
     }, {
       path: path.join(testSuitesRelativePath, 'resources.txt'),
       contents: Assets.getText(path.join('sample-tests', 'suites', 'resources.txt'))
