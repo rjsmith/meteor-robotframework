@@ -44,6 +44,14 @@ Add Robot Framework test and resource files under the `tests/robotframework/suit
 
 Robot Framework supports a [long list of command line options](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#using-command-line-options).  For example, the `--include` option ensures that only tests with given tag strings will be executed.The rsbatech:robotframework package will use any command line options specified in the `tests\robotframework\arguments.txt` file, if it exists.
 
+#### Test file formats
+
+If you use any of the following test file formats and file extensions, Velocity will automatically trigger a test re-run if any of these files are re-saved: 
+
+`.txt`, `.robot`, `.xhtml`, `.htm`, `.tsv`
+
+You can still use `.html` file extensions, and those tests will be run along with the other file types, but this package will *not* trigger Velocity to do a test re-run if `.html` files are edited and re-saved.  This has been necessary to prevent Meteor from parsing `.html` files as Meteor template files, and therefore causing your application to crash on startup.
+
 #### Using Selenium2Library
 
 Import Robot Framework's Selenium2Library into your test files to provide a [comprehensive set of keywords](http://rtomac.github.io/robotframework-selenium2library/doc/Selenium2Library.html) to drive the UI of your Meteor application.
@@ -135,6 +143,10 @@ Run your meteor application with the RF_DEBUG environment variable to view Robot
 ```bash
 RF_DEBUG=1 meteor
 ```
+
+#### Fixtures
+
+Place any Meteor framework code you may need as part of your tests (e.g. fixture Meteor methods) in the `tests/robotframework/fixtures` folder, and these will get built and added to your application codebase when running in debug or test mode (via `meteor --test`).
 
 ### Advanced
 

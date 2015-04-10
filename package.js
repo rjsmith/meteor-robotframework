@@ -5,7 +5,7 @@
   Package.describe({
     name: 'rsbatech:robotframework',
     summary: 'Robot Framework for Meteor Velocity',
-    version: '0.3.0',
+    version: '0.3.0-rc.1',
     git: 'https://github.com/rjsmith/meteor-robotframework',
     debugOnly: true
   });
@@ -35,7 +35,7 @@
       'sample-tests/suites/resources.txt', 
       'sample-tests/suites/test-txt.txt',
       'sample-tests/suites/test-tsv.tsv',
-      'sample-tests/suites/test-html.html',
+      'sample-tests/suites/test-html.xhtml',
       'sample-tests/arguments.txt'
       ], 'server', {isAsset: true});
 
