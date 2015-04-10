@@ -21,7 +21,7 @@
 
   Package.onUse(function(api) {
     api.use([
-      'velocity:core@0.6.0-rc.5',
+      'velocity:core@0.6.0-rc.7',
       'velocity:shim@0.0.3',
       'underscore@1.0.2', 
       'momentjs:moment@2.10.0'
