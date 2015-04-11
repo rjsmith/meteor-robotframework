@@ -2,6 +2,10 @@
 
 This [Meteor Framework](https://www.meteor.com/) package enables you to use the [Robot Framework](http://robotframework.org) acceptance testing platform to write end-to-end tests for your Meteor applications, using the Velocity framework.
 
+## Breaking Change v0.3.0
+
+Version 0.3.0 of this package uses a new version of Velocity Core, v0.6.0.  You should remove the now-redundant `packages/tests-proxy` folder from your project if you used a previous version of `rsbatech:robotframework`.
+
 ### Key features
 
 * Write application-level end-to-end UI tests (see "Test Mode #1" on Sam Hatoum's [THE 7 TESTING MODES OF METEOR](http://www.meteortesting.com/blog/e72fe/the-7-testing-modes-of-meteor) blog post)
@@ -46,11 +50,9 @@ Robot Framework supports a [long list of command line options](http://robotframe
 
 #### Test file formats
 
-If you use any of the following test file formats and file extensions, Velocity will automatically trigger a test re-run if any of these files are re-saved: 
+If you use any of the following Robot Framework test file formats and file extensions, Velocity will automatically trigger a test re-run if any of these files are re-saved: 
 
-`.txt`, `.robot`, `.xhtml`, `.htm`, `.tsv`
-
-You can still use `.html` file extensions, and those tests will be run along with the other file types, but this package will *not* trigger Velocity to do a test re-run if `.html` files are edited and re-saved.  This has been necessary to prevent Meteor from parsing `.html` files as Meteor template files, and therefore causing your application to crash on startup.
+`.txt`, `.robot`, `.html`, `.xhtml`, `.htm`, `.tsv`
 
 #### Using Selenium2Library
 
