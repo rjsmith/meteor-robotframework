@@ -1,6 +1,6 @@
-## 0.3.0-rc.1 - 2015-04-10
+## 0.3.0 - 2015-04-14
 - [feature] Compatible with Velocity Core 0.6.0
-- [README] Added info on use of .html test file extensions
+- [README] Added info on use of RF test file extensions
 
 ## 0.2.0 - 2015-01-30
 
