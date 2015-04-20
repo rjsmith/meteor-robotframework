@@ -27,6 +27,7 @@ RF_DEBUG = !!process.env.RF_DEBUG;
       XmlStream = Npm.require('xml-stream'),
       Rimraf = Npm.require('rimraf'),
       PhantomJS = Npm.require('phantomjs'),
+      connect = Npm.require('connect'),
       phantomJSBinPath = PhantomJS.path,
       ChromeDriver = Npm.require('chromedriver'),
       chromeDriverBinPath = ChromeDriver.path,
@@ -55,6 +56,8 @@ RF_DEBUG = !!process.env.RF_DEBUG;
     return;
   }
     
+  _addOutputDirStaticFilesMiddleware(outputDirPath);
+  
   /**
    * Obtains Velocity sample-test files
    */
@@ -85,10 +88,11 @@ RF_DEBUG = !!process.env.RF_DEBUG;
     });
     var init = function (mirror) {
       robotframework.mirror = mirror;
+      var debouncedRun = _.debounce(Meteor.bindEnvironment(_rerunRobotFramework), 1000);
       VelocityTestFiles.find({targetFramework: FRAMEWORK_NAME}).observe({
-        added: _.debounce(Meteor.bindEnvironment(_rerunRobotFramework), 300),
-        removed: _.debounce(Meteor.bindEnvironment(_rerunRobotFramework), 300),
-        changed: _.debounce(Meteor.bindEnvironment(_rerunRobotFramework), 300)
+        added: debouncedRun,
+        removed: debouncedRun,
+        changed: debouncedRun
       });
     };
     VelocityMirrors.find({framework: FRAMEWORK_NAME, state: 'ready'}).observe({
@@ -140,7 +144,7 @@ RF_DEBUG = !!process.env.RF_DEBUG;
             _processOutputXMLFile();
 
             if (fs.existsSync(reportHTMLPath)) {
-              console.log('[rsbatech:robotframework] Test report: ' + reportHTMLPath);
+              console.log('[rsbatech:robotframework] Test report available at: ' + Meteor.absoluteUrl('robotframework/report.html'));
             }
 
             // Inform Velocity that Robot Framework is done.
@@ -351,5 +355,29 @@ RF_DEBUG = !!process.env.RF_DEBUG;
       return (start.isValid() && end.isValid()) ? end.diff(start) : null;
     }
   }
+
+  // From https://github.com/xolvio/meteor-coverage/blob/master/coverage.js#L157:
+  /**
+   * Intercepts Meteor's staticFilesMiddleware and monitors requests. If the request is for a /robotframework file,
+   * this method will load the relevant static file from the reports directory and serve it.
+   *
+   * @method _addCoverageStaticFilesMiddleware
+   */
+  function _addOutputDirStaticFilesMiddleware (outputDirPath) {
+    var staticFilesMiddleware = WebAppInternals.staticFilesMiddleware;
+    WebAppInternals.staticFilesMiddleware = function yourStaticFilesMiddleware (options, req, res, next) {
+      var pathname = connect.utils.parseUrl(req).pathname;
+      if (pathname.indexOf('/robotframework/') !== -1) {
+        res.writeHead(200, {
+          'Content-type': 'text/html'
+        });
+        res.write(fs.readFileSync(path.join(outputDirPath, pathname.replace('/robotframework/', ''))).toString());
+        res.end();
+      } else {
+        return staticFilesMiddleware.apply(WebAppInternals, arguments);
+      }
+    };
+  }
+
 
 })();

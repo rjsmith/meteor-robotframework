@@ -1,3 +1,6 @@
+## 0.4.0 - ????
+- [feature] Provide direct link to RF report.html at http://localhost:3000/robotframework/report.html
+
 ## 0.3.0 - 2015-04-14
 - [feature] Compatible with Velocity Core 0.6.0
 - [README] Added info on use of RF test file extensions

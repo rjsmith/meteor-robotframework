@@ -136,7 +136,9 @@ Everytime the Robot Framework tests run against your application, you will see t
 [rsbatech:robotframework] Completed
 ```
 
-You can paste the test report path into a browser session to view the full Robot Framework - generated test report file.
+You can open a new browser window and paste in / manually refresh the Test report url to view the Robot Framework - generated report.html file, like this:
+
+http://localhost:3000/robotframework/report.html
 
 #### RF_DEBUG
 

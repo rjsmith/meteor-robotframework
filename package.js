@@ -17,7 +17,8 @@
     // https://github.com/isaacs/rimraf
     'rimraf': '2.2.8',
     'phantomjs': '1.9.13',
-    'chromedriver': '2.13.0'
+    'chromedriver': '2.13.0',
+    'connect': '2.9.0'
   })
 
   Package.onUse(function(api) {
@@ -27,6 +28,10 @@
       'underscore@1.0.2', 
       'momentjs:moment@2.10.0'
       ], ['server' , 'client']);
+
+    api.use([
+      'webapp',
+      ], ['server']);
 
     api.use([
         'velocity:html-reporter@0.5.3'
