@@ -30,7 +30,7 @@
       ], ['server' , 'client']);
 
     api.use([
-      'webapp',
+      'webapp@1.2.0',
       ], ['server']);
 
     api.use([
