@@ -2,9 +2,9 @@
 
 This [Meteor Framework](https://www.meteor.com/) package enables you to use the [Robot Framework](http://robotframework.org) acceptance testing platform to write end-to-end tests for your Meteor applications, using the Velocity framework.
 
-## Breaking Change v0.3.0
+## Breaking Change from v0.2.0 to v0.3.0
 
-Version 0.3.0 of this package uses a new version of Velocity Core, v0.6.0.  You should remove the now-redundant `packages/tests-proxy` folder from your project if you used a previous version of `rsbatech:robotframework`.
+Version 0.3.0 and after of this package uses a new version of Velocity Core, v0.6.x.  You should remove the now-redundant `packages/tests-proxy` folder from your project if you are upgrading from v0.1.0 or v0.2.0.
 
 ### Key features
 
@@ -132,13 +132,15 @@ Everytime the Robot Framework tests run against your application, you will see t
 ```bash
 [rsbatech:robotframework] Robot Framework is running
 [rsbatech:robotframework] 3 failed critical tests
-[rsbatech:robotframework] Test report: /Users/frodo/Projects/meteor-test/rftest/tests/robotframework/.logs/report.html
+[rsbatech:robotframework] Test report available at: http://localhost:3000/robotframework/report.html
 [rsbatech:robotframework] Completed
 ```
 
-You can open a new browser window and paste in / manually refresh the Test report url to view the Robot Framework - generated report.html file, like this:
+You can open a new browser window and paste in or manually refresh the Test report url to view the Robot Framework - generated report.html file, like this:
 
 http://localhost:3000/robotframework/report.html
+
+Note that you have to manually refresh to see the most recently - generated report results after each Robot Framework test run.
 
 #### RF_DEBUG
 

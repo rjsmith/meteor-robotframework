@@ -1,5 +1,6 @@
-## 0.4.0 - ????
+## 0.4.0 - 2015-04-27
 - [feature] Provide direct link to RF report.html at http://localhost:3000/robotframework/report.html
+- [fix] Prevent RF tests runing twice on Meteor startup (see: https://github.com/rjsmith/meteor-robotframework/issues/10)
 
 ## 0.3.0 - 2015-04-14
 - [feature] Compatible with Velocity Core 0.6.0

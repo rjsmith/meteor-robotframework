@@ -95,9 +95,10 @@ RF_DEBUG = !!process.env.RF_DEBUG;
         changed: debouncedRun
       });
     };
+    var initOnce = _.once(Meteor.bindEnvironment(init));
     VelocityMirrors.find({framework: FRAMEWORK_NAME, state: 'ready'}).observe({
-      added: init,
-      changed: init
+      added: initOnce,
+      changed: initOnce
     });
   });
  
