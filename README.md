@@ -44,6 +44,21 @@ meteor add rsbatech:robotframework
 
 Add Robot Framework test and resource files under the `tests/robotframework/suites' folder in your Meteor application.
 
+#### pybot command path
+
+Meteor-robotframework uses Robot Framework's [pybot runner script](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#runner-scripts) to launch the tests.  If you get an error when running Meteor-Robotframework tests that looks like this:
+
+```
+? (STDERR)
+? (STDERR) events.js:72
+? (STDERR) throw er; // Unhandled 'error' event
+? (STDERR) ^
+? (STDERR) Error: spawn ENOTDIR
+? (STDERR) at errnoException (child_process.js:1011:11)
+? (STDERR) at Process.ChildProcess._handle.onexit (child_process.js:802:34)
+```
+this probably indicates the $PATH environment variable is not correctly set up to point to the Robot Framework installation.  See the [Verifying Installation](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#verifying-installation) section of the Robot Framework User Guide for more details.
+
 #### arguments.txt
 
 Robot Framework supports a [long list of command line options](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#using-command-line-options).  For example, the `--include` option ensures that only tests with given tag strings will be executed.The rsbatech:robotframework package will use any command line options specified in the `tests\robotframework\arguments.txt` file, if it exists.
