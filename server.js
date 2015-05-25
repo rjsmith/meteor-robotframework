@@ -365,14 +365,27 @@ RF_DEBUG = !!process.env.RF_DEBUG;
    * @method _addCoverageStaticFilesMiddleware
    */
   function _addOutputDirStaticFilesMiddleware (outputDirPath) {
-    var staticFilesMiddleware = WebAppInternals.staticFilesMiddleware;
+    var staticFilesMiddleware = WebAppInternals.staticFilesMiddleware,
+        contentType;
     WebAppInternals.staticFilesMiddleware = function yourStaticFilesMiddleware (options, req, res, next) {
       var pathname = connect.utils.parseUrl(req).pathname;
       if (pathname.indexOf('/robotframework/') !== -1) {
+        if (pathname.indexOf('.png') !== -1) {
+          contentType = 'image/png';
+        } else {
+          contentType = 'text/html';
+        }
         res.writeHead(200, {
-          'Content-type': 'text/html'
+          'Content-type': contentType
         });
-        res.write(fs.readFileSync(path.join(outputDirPath, pathname.replace('/robotframework/', ''))).toString());
+        switch (contentType) {
+          case 'image/png':
+            res.write(fs.readFileSync(path.join(outputDirPath, pathname.replace('/robotframework/', ''))));         
+            break;
+          case 'text/html':
+            res.write(fs.readFileSync(path.join(outputDirPath, pathname.replace('/robotframework/', ''))).toString());
+            break;       
+        }
         res.end();
       } else {
         return staticFilesMiddleware.apply(WebAppInternals, arguments);
