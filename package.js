@@ -5,7 +5,7 @@
   Package.describe({
     name: 'rsbatech:robotframework',
     summary: 'Robot Framework for Meteor Velocity',
-    version: '0.4.0',
+    version: '0.4.1',
     git: 'https://github.com/rjsmith/meteor-robotframework',
     documentation: 'README.md',
     debugOnly: true
