@@ -1,3 +1,6 @@
+## 0.5.0 - 2015-09-24
+- [fix] Compatibility with Meteor 1.2 (see https://github.com/rjsmith/meteor-robotframework/issues/16)
+
 ## 0.4.1 - 2015-05-25
 - [fix] Serve screenshot images in robot framework output files (see https://github.com/rjsmith/meteor-robotframework/issues/11)
 

@@ -4,7 +4,7 @@ This [Meteor Framework](https://www.meteor.com/) package enables you to use the 
 
 ## Breaking Change from v0.2.0 to v0.3.0
 
-Version 0.3.0 and after of this package uses a new version of Velocity Core, v0.6.x.  You should remove the now-redundant `packages/tests-proxy` folder from your project if you are upgrading from v0.1.0 or v0.2.0.
+Version 0.3.0 and after of this package uses a new version of Velocity Core.  You should remove the now-redundant `packages/tests-proxy` folder from your project if you are upgrading from v0.1.0 or v0.2.0.
 
 ### Key features
 
